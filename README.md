@@ -79,22 +79,6 @@ El sistema contempla cuatro tipos de registro:
 - La disponibilidad de mobiliario y equipo debe verificarse antes de aprobar una
   solicitud.
 
-## Estructura actual
-
-```text
-.
-├── README.md
-└── referencias/
-    ├── biblioteca.jpg
-    ├── carpetas.jpg
-    ├── computo.jpg
-    ├── mobiliario.jpg
-    └── salon de actos.jpg
-```
-
-Las imágenes de `referencias/` documentan los formatos físicos existentes y sirven
-como base para el diseño de los formularios digitales.
-
 ## Tecnología
 
 La arquitectura, el lenguaje, la base de datos y el proceso de instalación se
