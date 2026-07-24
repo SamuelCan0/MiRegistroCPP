@@ -1,0 +1,122 @@
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.hero {
+  padding: 5rem max(1.5rem, calc((100vw - 1120px) / 2));
+  color: white;
+  background:
+    linear-gradient(125deg, rgba(7, 34, 77, 0.98), rgba(22, 86, 142, 0.9)),
+    #0b3764;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: #f5c242;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 720px;
+  margin-bottom: 1rem;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.hero-copy {
+  max-width: 650px;
+  margin-bottom: 2rem;
+  color: #dce9f6;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.6;
+}
+
+button {
+  padding: 0.9rem 1.3rem;
+  border: 0;
+  border-radius: 0.7rem;
+  color: #14213d;
+  background: #f5c242;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.modules {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 6rem;
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.section-heading .eyebrow {
+  color: #1765a4;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.module-card {
+  min-height: 235px;
+  padding: 1.6rem;
+  border: 1px solid #dbe4ee;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 16px 40px rgba(22, 52, 86, 0.08);
+}
+
+.module-card h3 {
+  font-size: 1.35rem;
+}
+
+.module-card p {
+  min-height: 4.5rem;
+  color: #556477;
+  line-height: 1.55;
+}
+
+.module-card a {
+  color: #1765a4;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.module-card a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-block: 4rem;
+  }
+
+  .modules {
+    padding-block: 3.5rem;
+  }
+}
