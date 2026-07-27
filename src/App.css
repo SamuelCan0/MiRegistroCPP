@@ -1467,8 +1467,9 @@ button:disabled {
 
 .calendar-event span {
   margin-right: 0.25rem;
-  font-size: 0.53rem;
+  font-size: 0.5rem;
   font-weight: 850;
+  letter-spacing: -0.015em;
 }
 
 .calendar-event.blue { color: #155996; background: #e9f4ff; }

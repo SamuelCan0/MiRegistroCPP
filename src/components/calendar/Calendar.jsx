@@ -37,9 +37,10 @@ function CalendarDay({
             type="button"
             key={request.id}
             onClick={() => onRequestSelect(request)}
-            title={`${request.startTime} · ${request.title}`}
+            aria-label={`${request.title}, de ${request.startTime} a ${request.endTime}`}
+            title={`${request.startTime}–${request.endTime} · ${request.title}`}
           >
-            <span>{request.startTime}</span>
+            <span>{request.startTime}–{request.endTime}</span>
             {request.title}
           </button>
         ))}
