@@ -15,7 +15,6 @@ import { AdminUsers } from './components/users/AdminUsers'
 import { useActiveSection } from './hooks/useActiveSection'
 import { useAuth } from './hooks/useAuth'
 import { useReservations } from './hooks/useReservations'
-import { useTheme } from './hooks/useTheme'
 
 function AuthenticatedApp({ onSignOut, user }) {
   const canManage = user.role === 'admin'
@@ -24,17 +23,13 @@ function AuthenticatedApp({ onSignOut, user }) {
     defaultResponsible: user.displayName,
   })
   const { activeSection, selectSection } = useActiveSection(canManage)
-  const { isDark, theme, toggleTheme } = useTheme()
 
   return (
     <div className="app">
       <Sidebar
         activeSection={activeSection}
-        isDark={isDark}
         onSectionSelect={selectSection}
-        onThemeToggle={toggleTheme}
         pendingCount={reservations.pendingCount}
-        theme={theme}
         userRole={user.role}
       />
 

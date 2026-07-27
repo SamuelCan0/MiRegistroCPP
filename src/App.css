@@ -507,84 +507,6 @@ button:disabled {
   content: '';
 }
 
-.theme-toggle {
-  display: flex;
-  width: 100%;
-  min-height: 58px;
-  align-items: center;
-  gap: 0.7rem;
-  margin-top: auto;
-  padding: 0.65rem 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 0.65rem;
-  color: white;
-  background: rgba(255, 255, 255, 0.06);
-  text-align: left;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  border-color: rgba(255, 255, 255, 0.24);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.theme-icon {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--navy);
-  background: white;
-  font-size: 1rem;
-}
-
-.theme-copy {
-  display: flex;
-  min-width: 0;
-  flex: 1;
-  flex-direction: column;
-}
-
-.theme-copy strong {
-  font-size: 0.76rem;
-}
-
-.theme-copy small {
-  margin-top: 0.2rem;
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.61rem;
-}
-
-.theme-switch {
-  position: relative;
-  width: 34px;
-  height: 19px;
-  flex: 0 0 34px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.24);
-}
-
-.theme-switch i {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: white;
-  transition: transform 180ms ease;
-}
-
-.theme-toggle[aria-pressed='true'] .theme-switch {
-  background: var(--red);
-}
-
-.theme-toggle[aria-pressed='true'] .theme-switch i {
-  transform: translateX(15px);
-}
-
 .resource-link {
   min-height: 39px;
   padding-block: 0.48rem;
@@ -601,6 +523,8 @@ button:disabled {
 }
 
 .navy { color: var(--navy); }
+.acts { color: #0c79d8; }
+.computer { color: #4ade80; }
 .blue { color: var(--blue); }
 .gold { color: #b88700; }
 .red { color: var(--red); }
@@ -613,7 +537,7 @@ button:disabled {
 .sidebar-help {
   display: flex;
   gap: 0.7rem;
-  margin-top: 0.7rem;
+  margin-top: auto;
   padding: 1rem 0.75rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -1375,6 +1299,8 @@ button:disabled {
 }
 
 .calendar-legend i.navy { background: var(--navy); }
+.calendar-legend i.acts { background: #0c79d8; }
+.calendar-legend i.computer { background: #4ade80; }
 .calendar-legend i.blue { background: var(--blue); }
 .calendar-legend i.gold { background: var(--gold); }
 .calendar-legend i.red { background: var(--red); }
@@ -1473,6 +1399,8 @@ button:disabled {
 }
 
 .calendar-event.blue { color: #155996; background: #e9f4ff; }
+.calendar-event.acts { color: #0c79d8; background: #e8f4ff; }
+.calendar-event.computer { color: #168348; background: #e9faef; }
 .calendar-event.gold { color: #8c6600; background: #fff7d1; }
 .calendar-event.red { color: #d60000; background: #fff0f0; }
 
@@ -1532,6 +1460,8 @@ button:disabled {
 }
 
 .request-date.blue { color: #155996; background: #e9f4ff; }
+.request-date.acts { color: #0c79d8; background: #e8f4ff; }
+.request-date.computer { color: #168348; background: #e9faef; }
 .request-date.gold { color: #896300; background: #fff7d1; }
 .request-date.red { color: #d00000; background: #fff0f0; }
 
@@ -1918,6 +1848,18 @@ html[data-theme='dark'] .request-date.blue {
   background: #19344d;
 }
 
+html[data-theme='dark'] .calendar-event.acts,
+html[data-theme='dark'] .request-date.acts {
+  color: #0c79d8;
+  background: #0c3150;
+}
+
+html[data-theme='dark'] .calendar-event.computer,
+html[data-theme='dark'] .request-date.computer {
+  color: #4ade80;
+  background: #173d2a;
+}
+
 html[data-theme='dark'] .status.confirmada {
   color: #75d6a7;
   background: #17392c;
@@ -2075,18 +2017,6 @@ html[data-theme='dark'] .row-arrow {
   .resource-link,
   .sidebar-help { display: none; }
 
-  .theme-toggle {
-    position: absolute;
-    top: 0.85rem;
-    right: 1.25rem;
-    width: auto;
-    min-height: 45px;
-    margin-top: 0;
-    padding: 0.4rem 0.55rem;
-  }
-
-  .theme-copy small { display: none; }
-
   .nav-item.active::before {
     inset: auto 12px -0.75rem;
     width: auto;
@@ -2140,18 +2070,6 @@ html[data-theme='dark'] .row-arrow {
 @media (max-width: 570px) {
   .brand-copy span { font-size: 0.7rem; }
   .main-nav { gap: 0.15rem; }
-
-  .theme-toggle {
-    width: 43px;
-    height: 43px;
-    min-height: 43px;
-    justify-content: center;
-    padding: 0;
-    border-radius: 50%;
-  }
-
-  .theme-copy,
-  .theme-switch { display: none; }
 
   .nav-item {
     justify-content: center;

@@ -8,11 +8,8 @@ const navigationItems = [
 
 export function Sidebar({
   activeSection,
-  isDark,
   onSectionSelect,
-  onThemeToggle,
   pendingCount,
-  theme,
   userRole,
 }) {
   return (
@@ -64,25 +61,6 @@ export function Sidebar({
           )
         })}
       </nav>
-
-      <button
-        className="theme-toggle"
-        type="button"
-        aria-label={`Activar modo ${isDark ? 'claro' : 'oscuro'}`}
-        aria-pressed={isDark}
-        onClick={onThemeToggle}
-      >
-        <span className="theme-icon" aria-hidden="true">
-          <AppIcon name={isDark ? 'sun' : 'moon'} />
-        </span>
-        <span className="theme-copy">
-          <strong>{isDark ? 'Modo claro' : 'Modo oscuro'}</strong>
-          <small>Tema {theme === 'dark' ? 'oscuro' : 'claro'} activo</small>
-        </span>
-        <span className="theme-switch" aria-hidden="true">
-          <i />
-        </span>
-      </button>
 
       <div className="sidebar-help">
         <span className="help-icon" aria-hidden="true">

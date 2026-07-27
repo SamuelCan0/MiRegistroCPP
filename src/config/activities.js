@@ -1,6 +1,6 @@
 export const ACTIVITIES = [
-  { name: 'Salón de actos', tone: 'navy' },
-  { name: 'Centro de cómputo', tone: 'blue' },
+  { name: 'Salón de actos', tone: 'acts' },
+  { name: 'Centro de cómputo', tone: 'computer' },
   { name: 'Biblioteca', tone: 'gold' },
   { name: 'Mobiliario y materiales', tone: 'red' },
 ]
