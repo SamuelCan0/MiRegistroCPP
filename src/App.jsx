@@ -1,4 +1,5 @@
 import './App.css'
+import { AuthScreen } from './components/auth/AuthScreen'
 import { Calendar } from './components/calendar/Calendar'
 import { StatsGrid } from './components/dashboard/StatsGrid'
 import { WelcomePanel } from './components/dashboard/WelcomePanel'
@@ -10,13 +11,19 @@ import { DeleteRequestModal } from './components/modals/DeleteRequestModal'
 import { RequestDetailModal } from './components/modals/RequestDetailModal'
 import { RequestFormModal } from './components/modals/RequestFormModal'
 import { UpcomingRequests } from './components/requests/UpcomingRequests'
+import { AdminUsers } from './components/users/AdminUsers'
 import { useActiveSection } from './hooks/useActiveSection'
+import { useAuth } from './hooks/useAuth'
 import { useReservations } from './hooks/useReservations'
 import { useTheme } from './hooks/useTheme'
 
-function App() {
-  const reservations = useReservations()
-  const { activeSection, selectSection } = useActiveSection()
+function AuthenticatedApp({ onSignOut, user }) {
+  const canManage = user.role === 'admin'
+  const reservations = useReservations({
+    canManage,
+    defaultResponsible: user.displayName,
+  })
+  const { activeSection, selectSection } = useActiveSection(canManage)
   const { isDark, theme, toggleTheme } = useTheme()
 
   return (
@@ -28,10 +35,15 @@ function App() {
         onThemeToggle={toggleTheme}
         pendingCount={reservations.pendingCount}
         theme={theme}
+        userRole={user.role}
       />
 
       <main className="main-content" id="inicio">
-        <Topbar today={reservations.today} />
+        <Topbar
+          onSignOut={onSignOut}
+          today={reservations.today}
+          user={user}
+        />
         <Toast message={reservations.notice} />
         <DataStatus
           error={reservations.dataError}
@@ -58,6 +70,7 @@ function App() {
           onRequestSelect={reservations.selectRequest}
           requests={reservations.upcomingRequests}
         />
+        {canManage && <AdminUsers currentUserId={user.id} />}
       </main>
 
       <RequestFormModal
@@ -73,6 +86,7 @@ function App() {
         onSubmit={reservations.handleSubmit}
       />
       <RequestDetailModal
+        canManage={canManage}
         onClose={reservations.clearSelectedRequest}
         onDelete={reservations.requestDelete}
         onEdit={reservations.editRequest}
@@ -87,6 +101,27 @@ function App() {
       />
     </div>
   )
+}
+
+function App() {
+  const auth = useAuth()
+
+  if (!auth.user) {
+    return (
+      <AuthScreen
+        error={auth.error}
+        isChecking={auth.isChecking}
+        isSubmitting={auth.isSubmitting}
+        onCancelPasswordSetup={auth.cancelPasswordSetup}
+        onClearError={auth.clearError}
+        onCompletePasswordSetup={auth.completePasswordSetup}
+        onSignIn={auth.signIn}
+        setupEmail={auth.setupEmail}
+      />
+    )
+  }
+
+  return <AuthenticatedApp onSignOut={auth.signOut} user={auth.user} />
 }
 
 export default App

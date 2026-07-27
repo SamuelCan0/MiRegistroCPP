@@ -4,6 +4,7 @@ import { AppIcon } from '../ui/AppIcon'
 import { ModalShell } from './ModalShell'
 
 export function RequestDetailModal({
+  canManage,
   onClose,
   onDelete,
   onEdit,
@@ -65,23 +66,33 @@ export function RequestDetailModal({
           <dd>{request.notes}</dd>
         </div>
       </dl>
+      {!canManage && (
+        <p className="permission-note">
+          Puedes consultar esta solicitud. Para modificarla o eliminarla,
+          contacta a Administración.
+        </p>
+      )}
       <div className="detail-actions">
-        <button
-          className="danger-button"
-          type="button"
-          onClick={() => onDelete(request)}
-        >
-          <AppIcon name="delete" />
-          Eliminar
-        </button>
-        <button
-          className="secondary-button"
-          type="button"
-          onClick={() => onEdit(request)}
-        >
-          <AppIcon name="edit" />
-          Editar
-        </button>
+        {canManage && (
+          <>
+            <button
+              className="danger-button"
+              type="button"
+              onClick={() => onDelete(request)}
+            >
+              <AppIcon name="delete" />
+              Eliminar
+            </button>
+            <button
+              className="secondary-button"
+              type="button"
+              onClick={() => onEdit(request)}
+            >
+              <AppIcon name="edit" />
+              Editar
+            </button>
+          </>
+        )}
         <button className="primary-button" type="button" onClick={onClose}>
           <AppIcon name="xmark" />
           Cerrar detalle

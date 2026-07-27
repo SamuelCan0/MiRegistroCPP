@@ -1,14 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-const SECTION_IDS = ['inicio', 'calendario', 'solicitudes']
+const BASE_SECTION_IDS = ['inicio', 'calendario', 'solicitudes']
 
-function getSectionFromHash() {
+function getSectionFromHash(sectionIds) {
   const section = window.location.hash.slice(1)
-  return SECTION_IDS.includes(section) ? section : SECTION_IDS[0]
+  return sectionIds.includes(section) ? section : sectionIds[0]
 }
 
-export function useActiveSection() {
-  const [activeSection, setActiveSection] = useState(getSectionFromHash)
+export function useActiveSection(canManageUsers = false) {
+  const sectionIds = useMemo(
+    () =>
+      canManageUsers
+        ? [...BASE_SECTION_IDS, 'usuarios']
+        : BASE_SECTION_IDS,
+    [canManageUsers],
+  )
+  const [activeSection, setActiveSection] = useState(() =>
+    getSectionFromHash(sectionIds),
+  )
 
   useEffect(() => {
     let animationFrame
@@ -21,16 +30,16 @@ export function useActiveSection() {
         document.documentElement.scrollHeight - 2
 
       if (reachedPageEnd) {
-        setActiveSection(SECTION_IDS.at(-1))
+        setActiveSection(sectionIds.at(-1))
         return
       }
 
-      const currentSection = SECTION_IDS.reduce((selected, sectionId) => {
+      const currentSection = sectionIds.reduce((selected, sectionId) => {
         const section = document.getElementById(sectionId)
         return section && section.getBoundingClientRect().top <= activationLine
           ? sectionId
           : selected
-      }, SECTION_IDS[0])
+      }, sectionIds[0])
 
       setActiveSection(currentSection)
     }
@@ -52,7 +61,7 @@ export function useActiveSection() {
       window.removeEventListener('hashchange', scheduleUpdate)
       if (animationFrame) window.cancelAnimationFrame(animationFrame)
     }
-  }, [])
+  }, [sectionIds])
 
   function selectSection(sectionId) {
     setActiveSection(sectionId)

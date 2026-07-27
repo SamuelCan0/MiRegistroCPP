@@ -16,14 +16,14 @@ import {
 } from '../utils/date'
 import { hasScheduleConflict } from '../utils/reservationConflicts'
 
-function createEmptyForm(minimumDateKey) {
+function createEmptyForm(minimumDateKey, defaultResponsible = '') {
   return {
     title: '',
     type: ACTIVITY_TYPES[0],
     date: minimumDateKey,
     startTime: '08:00',
     endTime: '09:00',
-    responsible: '',
+    responsible: defaultResponsible,
     notes: '',
   }
 }
@@ -40,7 +40,7 @@ function createEditForm(request) {
   }
 }
 
-export function useReservations() {
+export function useReservations({ canManage, defaultResponsible }) {
   const today = useMemo(() => {
     const now = new Date()
     return new Date(now.getFullYear(), now.getMonth(), now.getDate())
@@ -68,7 +68,9 @@ export function useReservations() {
   const [deleteError, setDeleteError] = useState('')
   const [notice, setNotice] = useState('')
   const [formError, setFormError] = useState('')
-  const [form, setForm] = useState(() => createEmptyForm(minimumDateKey))
+  const [form, setForm] = useState(() =>
+    createEmptyForm(minimumDateKey, defaultResponsible),
+  )
 
   const reloadRequests = useCallback(async () => {
     setIsLoading(true)
@@ -152,7 +154,7 @@ export function useReservations() {
   }
 
   function openForm() {
-    setForm(createEmptyForm(minimumDateKey))
+    setForm(createEmptyForm(minimumDateKey, defaultResponsible))
     setEditingRequestId(null)
     setFormError('')
     setIsFormOpen(true)
@@ -162,11 +164,12 @@ export function useReservations() {
     if (isSaving) return
     setIsFormOpen(false)
     setEditingRequestId(null)
-    setForm(createEmptyForm(minimumDateKey))
+    setForm(createEmptyForm(minimumDateKey, defaultResponsible))
     setFormError('')
   }
 
   function editRequest(request) {
+    if (!canManage) return
     setForm(createEditForm(request))
     setEditingRequestId(request.id)
     setSelectedRequest(null)
@@ -175,6 +178,7 @@ export function useReservations() {
   }
 
   function requestDelete(request) {
+    if (!canManage) return
     setSelectedRequest(null)
     setDeleteError('')
     setRequestPendingDeletion(request)
@@ -266,7 +270,7 @@ export function useReservations() {
       )
       setIsFormOpen(false)
       setEditingRequestId(null)
-      setForm(createEmptyForm(minimumDateKey))
+      setForm(createEmptyForm(minimumDateKey, defaultResponsible))
       setNotice(
         isEditing
           ? 'Solicitud actualizada correctamente.'

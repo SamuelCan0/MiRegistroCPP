@@ -13,6 +13,7 @@ export function Sidebar({
   onThemeToggle,
   pendingCount,
   theme,
+  userRole,
 }) {
   return (
     <aside className="sidebar">
@@ -31,9 +32,19 @@ export function Sidebar({
         </span>
       </a>
 
-      <nav className="main-nav" aria-label="Navegación principal">
-        <p className="nav-label">Administración</p>
-        {navigationItems.map(({ id, icon, label }) => {
+      <nav
+        className={`main-nav${userRole === 'admin' ? ' admin-nav' : ''}`}
+        aria-label="Navegación principal"
+      >
+        <p className="nav-label">
+          {userRole === 'admin' ? 'Administración' : 'Reservaciones'}
+        </p>
+        {[
+          ...navigationItems,
+          ...(userRole === 'admin'
+            ? [{ id: 'usuarios', icon: 'users', label: 'Usuarios' }]
+            : []),
+        ].map(({ id, icon, label }) => {
           const isActive = activeSection === id
 
           return (
