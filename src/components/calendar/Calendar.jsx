@@ -4,6 +4,7 @@ import {
   WEEK_DAYS,
 } from '../../config/activities'
 import { toDateKey } from '../../utils/date'
+import { AppIcon } from '../ui/AppIcon'
 
 function CalendarDay({
   currentMonth,
@@ -76,7 +77,7 @@ export function Calendar({
               onClick={() => onMoveMonth(-1)}
               aria-label="Mes anterior"
             >
-              ‹
+              <AppIcon name="chevronLeft" />
             </button>
             <h3>{monthLabel}</h3>
             <button
@@ -84,7 +85,7 @@ export function Calendar({
               onClick={() => onMoveMonth(1)}
               aria-label="Mes siguiente"
             >
-              ›
+              <AppIcon name="chevronRight" />
             </button>
           </div>
         </div>

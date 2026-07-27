@@ -1,3 +1,5 @@
+import { AppIcon } from '../ui/AppIcon'
+
 export function WelcomePanel({ onNewRequest }) {
   return (
     <section className="welcome-panel" aria-labelledby="welcome-title">
@@ -12,7 +14,7 @@ export function WelcomePanel({ onNewRequest }) {
         </p>
       </div>
       <button className="primary-button" type="button" onClick={onNewRequest}>
-        <span aria-hidden="true">＋</span>
+        <AppIcon name="plus" />
         Nueva solicitud
       </button>
     </section>

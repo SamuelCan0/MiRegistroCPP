@@ -6,17 +6,23 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prepare-site-build.mjs",
+    "db:generate": "node -r ./scripts/drizzle-user-info.cjs ./node_modules/drizzle-kit/bin.cjs generate",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.3.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "@fortawesome/react-fontawesome": "^3.5.0",
     "@vitejs/plugin-react": "^6.0.4",
-    "vite": "^8.1.5",
+    "drizzle-orm": "0.45.2",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "vite": "^8.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.0",
+    "drizzle-kit": "0.31.10",
     "eslint": "^9.30.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

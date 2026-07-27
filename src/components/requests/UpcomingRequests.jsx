@@ -1,5 +1,6 @@
 import { ACTIVITY_META } from '../../config/activities'
 import { formatDate, fromDateKey } from '../../utils/date'
+import { AppIcon } from '../ui/AppIcon'
 
 function RequestRow({ onSelect, request }) {
   const requestDate = fromDateKey(request.date)
@@ -24,7 +25,9 @@ function RequestRow({ onSelect, request }) {
       <span className={`status ${request.status.toLowerCase()}`}>
         {request.status}
       </span>
-      <span className="row-arrow" aria-hidden="true">›</span>
+      <span className="row-arrow" aria-hidden="true">
+        <AppIcon name="chevronRight" />
+      </span>
     </button>
   )
 }
@@ -41,13 +44,20 @@ export function UpcomingRequests({ onRequestSelect, requests }) {
         <h2 id="requests-title">Solicitudes próximas</h2>
       </div>
       <div className="request-list">
-        {requests.map((request) => (
-          <RequestRow
-            key={request.id}
-            onSelect={onRequestSelect}
-            request={request}
-          />
-        ))}
+        {requests.length === 0 ? (
+          <p className="empty-state">
+            Todavía no hay solicitudes próximas. Registra la primera para
+            verla aquí y en el calendario.
+          </p>
+        ) : (
+          requests.map((request) => (
+            <RequestRow
+              key={request.id}
+              onSelect={onRequestSelect}
+              request={request}
+            />
+          ))
+        )}
       </div>
     </section>
   )

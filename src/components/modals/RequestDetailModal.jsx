@@ -1,8 +1,14 @@
 import { ACTIVITY_META } from '../../config/activities'
 import { formatDate, fromDateKey } from '../../utils/date'
+import { AppIcon } from '../ui/AppIcon'
 import { ModalShell } from './ModalShell'
 
-export function RequestDetailModal({ onClose, request }) {
+export function RequestDetailModal({
+  onClose,
+  onDelete,
+  onEdit,
+  request,
+}) {
   if (!request) return null
 
   const requestDate = formatDate(fromDateKey(request.date), {
@@ -30,7 +36,7 @@ export function RequestDetailModal({ onClose, request }) {
           onClick={onClose}
           aria-label="Cerrar"
         >
-          ×
+          <AppIcon name="xmark" />
         </button>
       </div>
       <dl className="detail-list">
@@ -59,13 +65,28 @@ export function RequestDetailModal({ onClose, request }) {
           <dd>{request.notes}</dd>
         </div>
       </dl>
-      <button
-        className="primary-button full-button"
-        type="button"
-        onClick={onClose}
-      >
-        Cerrar detalle
-      </button>
+      <div className="detail-actions">
+        <button
+          className="danger-button"
+          type="button"
+          onClick={() => onDelete(request)}
+        >
+          <AppIcon name="delete" />
+          Eliminar
+        </button>
+        <button
+          className="secondary-button"
+          type="button"
+          onClick={() => onEdit(request)}
+        >
+          <AppIcon name="edit" />
+          Editar
+        </button>
+        <button className="primary-button" type="button" onClick={onClose}>
+          <AppIcon name="xmark" />
+          Cerrar detalle
+        </button>
+      </div>
     </ModalShell>
   )
 }

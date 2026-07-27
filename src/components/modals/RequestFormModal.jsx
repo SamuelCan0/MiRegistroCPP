@@ -1,10 +1,13 @@
 import { ACTIVITY_TYPES } from '../../config/activities'
+import { AppIcon } from '../ui/AppIcon'
 import { ModalShell } from './ModalShell'
 
 export function RequestFormModal({
   error,
   form,
+  isEditing,
   isOpen,
+  isSaving,
   minimumDateKey,
   minimumDateLabel,
   onChange,
@@ -17,8 +20,12 @@ export function RequestFormModal({
     <ModalShell labelledBy="form-title" onClose={onClose}>
       <div className="modal-header">
         <div>
-          <p className="eyebrow">Nueva reservación</p>
-          <h2 id="form-title">Registrar solicitud</h2>
+          <p className="eyebrow">
+            {isEditing ? 'Editar reservación' : 'Nueva reservación'}
+          </p>
+          <h2 id="form-title">
+            {isEditing ? 'Editar solicitud' : 'Registrar solicitud'}
+          </h2>
         </div>
         <button
           className="close-button"
@@ -26,12 +33,14 @@ export function RequestFormModal({
           onClick={onClose}
           aria-label="Cerrar"
         >
-          ×
+          <AppIcon name="xmark" />
         </button>
       </div>
 
       <div className="advance-notice">
-        <span aria-hidden="true">i</span>
+        <span aria-hidden="true">
+          <AppIcon name="info" />
+        </span>
         <p>
           <strong>Anticipación obligatoria</strong>
           La primera fecha disponible es el {minimumDateLabel}.
@@ -114,11 +123,26 @@ export function RequestFormModal({
         {error && <p className="form-error" role="alert">{error}</p>}
 
         <div className="modal-actions">
-          <button className="secondary-button" type="button" onClick={onClose}>
+          <button
+            className="secondary-button"
+            type="button"
+            disabled={isSaving}
+            onClick={onClose}
+          >
+            <AppIcon name="xmark" />
             Cancelar
           </button>
-          <button className="primary-button" type="submit">
-            Registrar solicitud
+          <button
+            className="primary-button"
+            type="submit"
+            disabled={isSaving}
+          >
+            <AppIcon name={isEditing ? 'save' : 'plus'} />
+            {isSaving
+              ? 'Guardando…'
+              : isEditing
+                ? 'Guardar cambios'
+                : 'Registrar solicitud'}
           </button>
         </div>
       </form>

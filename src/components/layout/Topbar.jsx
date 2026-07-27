@@ -14,10 +14,6 @@ export function Topbar({ today }) {
         <h1>Buenos días, Administración</h1>
       </div>
       <div className="topbar-actions">
-        <button className="icon-button" type="button" aria-label="Notificaciones">
-          <span aria-hidden="true">●</span>
-          <i />
-        </button>
         <div className="profile">
           <span className="avatar">AD</span>
           <span>
