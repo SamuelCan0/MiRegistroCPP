@@ -63,7 +63,7 @@ El sistema contempla cuatro tipos de registro:
 
 ## Estados sugeridos
 
-- Pendiente
+- Programada
 - Aprobada
 - Entregada o en uso
 - Devuelta o finalizada
@@ -97,4 +97,3 @@ repositorio se conserva como **MiRegistroCPP**.
 ## Repositorio
 
 <https://github.com/SamuelCan0/MiRegistroCPP>
-

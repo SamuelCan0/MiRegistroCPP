@@ -118,7 +118,7 @@ export function useReservations({ canManage, defaultResponsible }) {
     [currentMonth, requests],
   )
   const pendingCount = requests.filter(
-    (request) => request.status === 'Pendiente',
+    (request) => request.status === 'Programada',
   ).length
   const upcomingRequests = useMemo(
     () =>

@@ -21,7 +21,7 @@ export function getInitialRequests(today) {
       startTime: '08:00',
       endTime: '10:00',
       responsible: 'Prof. Mariana López',
-      status: 'Pendiente',
+      status: 'Programada',
       notes: 'Uso de 25 equipos.',
     },
     {
@@ -43,7 +43,7 @@ export function getInitialRequests(today) {
       startTime: '07:30',
       endTime: '13:30',
       responsible: 'Coordinación de ciencias',
-      status: 'Pendiente',
+      status: 'Programada',
       notes: '10 mesas plegables y 20 sillas.',
     },
   ]

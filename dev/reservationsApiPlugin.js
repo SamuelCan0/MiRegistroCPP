@@ -113,7 +113,7 @@ function createDatabase() {
       end_time TEXT NOT NULL,
       responsible TEXT NOT NULL,
       notes TEXT NOT NULL DEFAULT '',
-      status TEXT NOT NULL DEFAULT 'Pendiente',
+      status TEXT NOT NULL DEFAULT 'Programada',
       created_by_user_id TEXT REFERENCES users(id) ON DELETE SET NULL,
       created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -170,6 +170,9 @@ function createDatabase() {
       'ALTER TABLE requests ADD COLUMN created_by_user_id TEXT REFERENCES users(id) ON DELETE SET NULL',
     )
   }
+  database
+    .prepare("UPDATE requests SET status = 'Programada' WHERE status = 'Pendiente'")
+    .run()
   return database
 }
 
@@ -389,7 +392,7 @@ async function createRequest(database, request, response, user) {
          id, title, type, date, start_time, end_time,
          responsible, notes, status, created_by_user_id
        )
-       SELECT ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, 'Pendiente', ?9
+       SELECT ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, 'Programada', ?9
        WHERE NOT EXISTS (
          SELECT 1 FROM requests
          WHERE type = ?3 AND date = ?4

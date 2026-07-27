@@ -31,7 +31,7 @@ export function StatsGrid({
           <AppIcon name="clock" />
         </span>
         <div>
-          <p>Pendientes</p>
+          <p>Programadas</p>
           <strong>{pendingCount}</strong>
         </div>
         <span className="stat-note warning">Por revisar</span>

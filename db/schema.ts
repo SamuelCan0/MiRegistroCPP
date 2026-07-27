@@ -45,7 +45,7 @@ export const requests = sqliteTable(
     endTime: text('end_time').notNull(),
     responsible: text('responsible').notNull(),
     notes: text('notes').notNull().default(''),
-    status: text('status').notNull().default('Pendiente'),
+    status: text('status').notNull().default('Programada'),
     createdByUserId: text('created_by_user_id').references(() => users.id, {
       onDelete: 'set null',
     }),

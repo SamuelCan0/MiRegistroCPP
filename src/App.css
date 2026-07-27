@@ -1587,7 +1587,7 @@ button:disabled {
 }
 
 .status.confirmada { color: #1d7448; background: #e9f8f0; }
-.status.pendiente { color: #a56300; background: #fff5dd; }
+.status.programada { color: #a56300; background: #fff5dd; }
 .row-arrow { color: #a6afbb; font-size: 1.4rem; }
 
 /* Modals */
@@ -1922,7 +1922,7 @@ html[data-theme='dark'] .status.confirmada {
   background: #17392c;
 }
 
-html[data-theme='dark'] .status.pendiente {
+html[data-theme='dark'] .status.programada {
   color: #f2c96d;
   background: #3d321c;
 }

@@ -15,6 +15,13 @@
       "when": 1785174487931,
       "tag": "0001_lively_mimic",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1785177450199,
+      "tag": "0002_moaning_thunderball",
+      "breakpoints": true
     }
   ]
 }

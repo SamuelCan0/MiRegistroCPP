@@ -301,7 +301,7 @@ async function createRequest(request, db, user) {
          id, title, type, date, start_time, end_time,
          responsible, notes, status, created_by_user_id
        )
-       SELECT ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, 'Pendiente', ?9
+       SELECT ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, 'Programada', ?9
        WHERE NOT EXISTS (
          SELECT 1
          FROM requests
